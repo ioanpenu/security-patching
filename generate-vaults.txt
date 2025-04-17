@@ -1,0 +1,25 @@
+✅ How to Use It
+
+    Save it as generate-vaults.sh
+
+    Make it executable:
+
+chmod +x generate-vaults.sh
+
+Create your Ansible Vault password file (if not done already):
+
+echo 'YourVaultPassword' > ~/.vault_pass.txt
+chmod 600 ~/.vault_pass.txt
+
+Run the script:
+
+    ./generate-vaults.sh
+
+You'll be prompted to enter hostnames and sudo passwords one by one. The script encrypts each password into its own host's vault.yml.
+💡 Example Interaction:
+
+Enter hostnames (space-separated): server1.local server2.local
+Enter sudo password for server1.local: ********
+Vault created for server1.local at host_vars/server1.local/vault.yml
+Enter sudo password for server2.local: ********
+Vault created for server2.local at host_vars/server2.local/vault.yml
