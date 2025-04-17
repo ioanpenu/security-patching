@@ -1,0 +1,10 @@
+---
+- name: Dry-run security updates
+  shell: unattended-upgrade --dry-run -d
+  register: updates_output
+  tags: check_security
+
+- name: Show pending security updates
+  debug:
+    var: updates_output.stdout_lines
+  tags: check_security
