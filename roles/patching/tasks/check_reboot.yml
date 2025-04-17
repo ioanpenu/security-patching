@@ -26,3 +26,4 @@ avaya@pvgv1tzsaubu1:~/security-patching/roles/patching/tasks$ cat check_reboot.y
     msg: "✅ No reboot needed on {{ inventory_hostname }}"
   when: not reboot_flag.stat.exists
   tags: check_reboot
+...
