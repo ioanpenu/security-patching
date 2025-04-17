@@ -1,0 +1,5 @@
+---
+- name: Apply security updates only
+  shell: unattended-upgrade -d
+  tags: upgrade_security
+...
