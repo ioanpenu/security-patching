@@ -21,4 +21,6 @@ security-patching/
 │   └── <hostname>/
 │       └── vault.yml
 └── .vault_pass.txt
+|__ generate_vault.sh
+|__ generate_vault.txt
 
