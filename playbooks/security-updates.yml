@@ -1,0 +1,29 @@
+---
+- name: Run Ubuntu update operations
+  hosts: ubuntu_servers
+  become: yes
+  tasks:
+    - name: Include security dry-run task
+      include_tasks: ../roles/patching/tasks/check_security.yml
+      tags: check_security
+
+    - name: Include full upgrade dry-run task
+      include_tasks: ../roles/patching/tasks/check_full.yml
+      tags: check_full
+
+    - name: Include task to apply security updates
+      include_tasks: ../roles/patching/tasks/upgrade_security.yml
+      tags: upgrade_security
+
+    - name: Include task to apply full updates
+      include_tasks: ../roles/patching/tasks/upgrade_full.yml
+      tags: upgrade_full
+
+    - name: Include task to check reboot status
+      include_tasks: ../roles/patching/tasks/check_reboot.yml
+      tags: check_reboot
+
+    - name: Include task to reboot if required
+      include_tasks: ../roles/patching/tasks/reboot_if_needed.yml
+      tags: trigger_reboot
+...
