@@ -1,0 +1,10 @@
+---
+- name: Dry-run full system update
+  shell: apt -s upgrade
+  register: full_output
+  tags: check_full
+
+- name: Show packages to be upgraded (full upgrade)
+  debug:
+    var: full_output.stdout_lines
+  tags: check_full
