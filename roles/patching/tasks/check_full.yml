@@ -8,3 +8,4 @@
   debug:
     var: full_output.stdout_lines
   tags: check_full
+...
