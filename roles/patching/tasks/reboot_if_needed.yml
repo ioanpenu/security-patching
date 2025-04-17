@@ -1,0 +1,10 @@
+---
+- name: Reboot the system if required
+  reboot:
+    msg: "🔄 Reboot initiated by Ansible (updates installed)"
+    connect_timeout: 5
+    reboot_timeout: 600
+    pre_reboot_delay: 5
+  when: reboot_flag.stat.exists
+  tags: trigger_reboot
+...
