@@ -1,6 +1,6 @@
 # security-patching
 Website:
-Script Name: Secure and Centralized Ubuntu Patching with Ansible
+Application Name: Secure and Centralized Ubuntu Patching with Ansible
 
 Project Layout
 ```text
