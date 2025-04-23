@@ -1,6 +1,5 @@
----
 - name: Get disk usage of /dev/sda1
-  shell: df -h | grep '/dev/sda1'
+  shell: df -h /dev/sda1 | tail -1
   register: disk_sda1
   changed_when: false
   tags: check_disk
@@ -10,10 +9,15 @@
     sda1_usage_percent: "{{ disk_sda1.stdout.split()[4].replace('%', '') | int }}"
   tags: check_disk
 
+- name: Extract available space
+  set_fact:
+    sda1_available_space: "{{ disk_sda1.stdout.split()[3] }}"
+  tags: check_disk
+
 - name: Show disk usage info
   debug:
     msg: >
-      🧾 /dev/sda1 usage on {{ inventory_hostname }}: {{ sda1_usage_percent }}%
+      🧾 /dev/sda1 usage on {{ inventory_hostname }}: {{ sda1_usage_percent }}% used, {{ sda1_available_space }} available
   tags: check_disk
 
 - name: Warn if /dev/sda1 is above 90%
@@ -24,4 +28,3 @@
       /dev/sda1 usage is {{ sda1_usage_percent }}% – critically high!
   when: sda1_usage_percent | int > 90
   tags: check_disk
-...
