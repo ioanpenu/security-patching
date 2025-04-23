@@ -1,0 +1,18 @@
+---
+- name: Retrieve list of upgradable packages
+  shell: apt list --upgradable 2>/dev/null | grep -v 'Listing...'
+  register: upgradable_packages
+  changed_when: false
+  failed_when: upgradable_packages.rc not in [0, 1]
+  tags: check_upgrades
+
+- name: Count the number of upgradable packages
+  set_fact:
+    upgradable_count: "{{ upgradable_packages.stdout_lines | length }}"
+  tags: check_upgrades
+
+- name: Display the number of upgradable packages
+  debug:
+    msg: "There are {{ upgradable_count }} packages that can be upgraded."
+  tags: check_upgrades
+...
