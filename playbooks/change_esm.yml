@@ -1,0 +1,17 @@
+---
+- name: Backup and Restore ubuntu-esm-infra.list
+  hosts: all
+  become: true
+  tasks:
+    - name: Backup ubuntu-esm-infra.list
+      command: mv /etc/apt/sources.list.d/ubuntu-esm-infra.list /etc/apt/sources.list.d/ubuntu-esm-infra.list.bak
+      args:
+        creates: /etc/apt/sources.list.d/ubuntu-esm-infra.list.bak
+      tags: backup_esm
+
+    - name: Restore ubuntu-esm-infra.list
+      command: mv /etc/apt/sources.list.d/ubuntu-esm-infra.list.bak /etc/apt/sources.list.d/ubuntu-esm-infra.list
+      args:
+        creates: /etc/apt/sources.list.d/ubuntu-esm-infra.list
+      tags: restore_esm
+...
