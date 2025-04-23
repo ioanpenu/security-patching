@@ -26,4 +26,12 @@
     - name: Include task to reboot if required
       include_tasks: ../roles/patching/tasks/reboot_if_needed.yml
       tags: trigger_reboot
+
+    - name: Include task to check disk usage
+      include_tasks: ../roles/patching/tasks/check_disk_space.yml
+      tags: check_disk
+
+    - name: Include task to check upgradable packages
+      include_tasks: ../roles/patching/tasks/check_upgrades.yml
+      tags: check_upgrades
 ...
