@@ -1,3 +1,4 @@
+---
 - name: Get disk usage of /dev/sda1
   shell: df -h /dev/sda1 | tail -1
   register: disk_sda1
@@ -28,3 +29,4 @@
       /dev/sda1 usage is {{ sda1_usage_percent }}% – critically high!
   when: sda1_usage_percent | int > 90
   tags: check_disk
+...
